@@ -8,7 +8,7 @@ export const api = axios.create({
 
 export const fetchData = async (page: number = 1, per_page: number = 10) => {
     try {
-        const response = await api.get('/v1/users', {
+        const response = await api.get('/v1/data', {
             params: { offset: page * per_page - per_page, limit: per_page },
         });
         return response.data;
@@ -19,7 +19,7 @@ export const fetchData = async (page: number = 1, per_page: number = 10) => {
 
 // export const deleteData = async (id: number) => {
 //     try {
-//         const response = await api.delete(`/v1/users/${id}`);
+//         const response = await api.delete(`/v1/data/${id}`);
 //         return { statusCode: response.status }
 //     } catch (error) {
 //         throw new Error(`Data ${id} does not exist.`);
