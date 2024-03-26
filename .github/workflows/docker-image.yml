@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file ./server/Dockerfile --tag secret-ops-server:$(date +%s)
+      run: cd ./server && docker build . --file Dockerfile --tag secret-ops-server:$(date +%s)
