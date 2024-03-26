@@ -6,12 +6,12 @@ export const api = axios.create({
     baseURL: API_BASE_URL,
 });
 
-export const fetchData = async (page: number = 1, per_page: number = 10) => {
+// TODO:  params: { offset: page * per_page - per_page, limit: per_page }
+
+export const fetchData = async () => {
     try {
-        const response = await api.get('/v1/data', {
-            params: { offset: page * per_page - per_page, limit: per_page },
-        });
-        return response.data;
+        const response = await api.get('/api/v1/users');
+        return response.data.responseObject;
     } catch (error) {
         throw new Error('Error fetching data');
     }

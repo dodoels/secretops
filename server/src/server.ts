@@ -25,7 +25,7 @@ app.use(rateLimiter);
 app.use(requestLogger());
 
 // Routes
-app.use('/users', userRouter);
+app.use('/api/v1/users', userRouter);
 
 // Swagger UI
 app.use(openAPIRouter);

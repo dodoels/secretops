@@ -16,8 +16,8 @@ describe('secretops', () => {
 
     it('fetches data successfully', async () => {
         const mockResponse = mockData;
-        mock.onGet('/v1/something').reply(200, mockResponse);
+        mock.onGet('/api/v1/users').reply(200, mockResponse);
         const result = await fetchData();
-        expect(result).toEqual(mockResponse);
+        expect(result).toEqual(mockResponse.responseObject);
     });
 });

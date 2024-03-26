@@ -1,10 +1,15 @@
 import './index.scss';
+import { Data } from '../../models/Data';
 
-const DataCard = ({ data }) => {
+interface DataCardProps {
+    data: Data;
+}
+
+const DataCard = (props: DataCardProps) => {
     return (
         <div className="DataCard-container">
             <div className="DataCard-content">
-                <h3>{data}</h3>
+                <h3>{props.data.id}</h3>
             </div>
         </div>
     );
