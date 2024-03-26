@@ -1,21 +1,19 @@
 .DataCard-container {
+    position: relative;
+    border-radius: 14px;
+    background-color: var(--grey);
+    height: 240px;
+    max-width: 100%;
+    min-width: 240px;
+    text-align: center;
 
-  position: relative;
-  border-radius: 14px;
-  background-color: var(--grey);
-  height: 240px;
-  max-width: 100%;
-  min-width: 240px;
-  text-align: center;
+    .DataCard-content {
+        padding: 10px 20px 0px 20px;
+        text-align: left;
+        font-weight: bold;
 
-  .DataCard-content {
-    padding: 10px 20px 0px 20px;
-    text-align: left;
-    font-weight: bold;
-
-    h3 {
-      font-size: 30px;
+        h3 {
+            font-size: 30px;
+        }
     }
-  }
-
 }

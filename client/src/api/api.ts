@@ -13,7 +13,7 @@ export const fetchData = async (page: number = 1, per_page: number = 10) => {
         });
         return response.data;
     } catch (error) {
-        throw new Error("Error fetching data");
+        throw new Error('Error fetching data');
     }
 };
 
@@ -25,4 +25,3 @@ export const fetchData = async (page: number = 1, per_page: number = 10) => {
 //         throw new Error(`Data ${id} does not exist.`);
 //     }
 // };
-
