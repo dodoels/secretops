@@ -57,7 +57,7 @@
     "**/*": "npm run format",
     "**/*.{js,ts}": "npm run lint:fix"
   },
-  "author": "Bruce Cai",
+  "author": "Eeveecc",
   "repository": "https://github.com/eeveecc/secretops.git",
   "license": "ISC"
 }
