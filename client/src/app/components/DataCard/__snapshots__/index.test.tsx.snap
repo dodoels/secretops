@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<DataCard /> > matches snapshot 1`] = `
+<div>
+  <div
+    class="DataCard-container"
+  >
+    <div
+      class="DataCard-content"
+    >
+      <h3>
+        1
+      </h3>
+    </div>
+  </div>
+</div>
+`;
