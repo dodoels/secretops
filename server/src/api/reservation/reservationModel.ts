@@ -23,10 +23,9 @@ export const ReservationSchema = z.object({
 });
 
 export const GetReservationSchema = z.object({
-    params: z.object({ 
-        uuid: commonValidations.number,
+    query: z.object({ 
         limit: commonValidations.number,
-        page: commonValidations.number
+        offset: commonValidations.number
     }),
 });
 

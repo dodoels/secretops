@@ -1,5 +1,5 @@
 import './App.scss';
-import DataDisplay from './components/DataDisplay';
+import ReservationTable from './components/ReservationTable';
 
 function App() {
     return (
@@ -7,7 +7,7 @@ function App() {
             <div className="App-header">
                 <h1 className="App-title">Secret Ops</h1>
             </div>
-            <DataDisplay />
+            <ReservationTable />
         </div>
     );
 }

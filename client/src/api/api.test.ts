@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach, beforeEach } from 'vitest';
 import MockAdapter from 'axios-mock-adapter';
-import { api, fetchData } from './api';
+import { api, fetchReservation } from './api';
 import { mockData } from './api.mock';
 
 describe('secretops', () => {
@@ -16,8 +16,8 @@ describe('secretops', () => {
 
     it('fetches data successfully', async () => {
         const mockResponse = mockData;
-        mock.onGet('/api/v1/users').reply(200, mockResponse);
-        const result = await fetchData();
+        mock.onGet('/api/v1/reservations').reply(200, mockResponse);
+        const result = await fetchReservation();
         expect(result).toEqual(mockResponse.responseObject);
     });
 });

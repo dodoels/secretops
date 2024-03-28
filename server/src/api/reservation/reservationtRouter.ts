@@ -21,24 +21,13 @@ export const reservationRouter: Router = (() => {
         responses: createApiResponse(z.array(ReservationSchema), 'Success'),
     });
 
-    router.get('/', async (_req: Request, res: Response) => {
-        const serviceResponse = await reservationService.findAll();
+    router.get('/', validateRequest(GetReservationSchema), async (req: Request, res: Response) => {
+        const limit = parseInt(req.query.limit as string, 10);
+        const offset = parseInt(req.query.offset as string, 10);
+        const serviceResponse = await reservationService.findAll(limit, offset);
         handleServiceResponse(serviceResponse, res);
     });
 
-    // userRegistry.registerPath({
-    //     method: 'get',
-    //     path: '/users/{id}',
-    //     tags: ['User'],
-    //     request: { params: GetUserSchema.shape.params },
-    //     responses: createApiResponse(UserSchema, 'Success'),
-    // });
-
-    // router.get('/:id', validateRequest(GetUserSchema), async (req: Request, res: Response) => {
-    //     const id = parseInt(req.params.id as string, 10);
-    //     const serviceResponse = await userService.findById(id);
-    //     handleServiceResponse(serviceResponse, res);
-    // });
-
     return router;
+
 })();
