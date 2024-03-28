@@ -44,7 +44,9 @@ export const reservations = preprocess(MockProductAssignments, MockProductCharge
 export const reservationRepository = {
     
     findAllAsync: async (limit: number, offset: number): Promise<Reservation[]> => {
-        const result: Reservation[] = Array.from(reservations.keys()).slice(offset, offset + limit).map((uuid: string) => {
+        const result: Reservation[] = Array.from(reservations.keys())
+            .slice(offset, offset + limit)
+            .map((uuid: string) => {
             const products = reservations.get(uuid) || [];
             return {
                 uuid,
@@ -56,18 +58,18 @@ export const reservationRepository = {
         return result;
     },
 
-    findByIdAsync: async (uuid: string): Promise<Reservation[]> => {
-        const result = [];
-        if (reservations.has(uuid)) {
+    findByIdAsync: async (searchUuid: string): Promise<Reservation[]> => {
+        const result: Reservation[] = Array.from(reservations.keys())
+            .filter((uuid: string) => uuid.indexOf(searchUuid) !== -1)
+            .map((uuid: string) => {
             const products = reservations.get(uuid) || [];
-            const reservation: Reservation = {
+            return {
                 uuid,
-                sum: products.reduce((acc, product) => acc + product.charge, 0),
-                active: products.reduce((acc, product) => acc += product.status === "active" ? 1 : 0, 0),
+                sum: products.reduce((acc, product) => acc += product.status === "true" ? product.charge : 0, 0),
+                active: products.reduce((acc, product) => acc += product.status === "true" ? 1 : 0, 0),
                 products
             }
-            result.push(reservation);
-        }
+        });
         return result;
     }
 

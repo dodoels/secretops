@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { fetchReservation } from '../../../api/api';
+import { fetchReservation, fetchReservationById } from '../../../api/api';
 import './index.scss';
 import { Reservation } from '../../models/Reservation';
 import { RxTriangleDown, RxTriangleRight } from 'react-icons/rx';
@@ -16,6 +16,23 @@ const ReservationTable = () => {
             setReservations(fetchedReservations);
             setCurrentPage(page);
             setExpandedRows(new Set());
+        } catch (error) {
+            console.error('Failed to fetch data: ', error);
+        }
+    }, []);
+
+    const searchReservationById = useCallback(async (event: SubmitEvent) => {
+        try {
+            event.preventDefault();
+            let fetchedReservations: Reservation[];
+            if (event.target[0].value.length > 0) {
+                fetchedReservations = await fetchReservationById(event.target[0].value);
+                setReservations(fetchedReservations);
+                setCurrentPage(1);
+                setExpandedRows(new Set());
+            } else {
+                loadReservations();
+            }
         } catch (error) {
             console.error('Failed to fetch data: ', error);
         }
@@ -42,7 +59,6 @@ const ReservationTable = () => {
     }, []);
 
     const getColor = useCallback((status: string) => {
-        console.log(status)
         switch (status) {
             case 'true': return '#6aa84f';
             case 'false': return '#e06666';
@@ -56,7 +72,11 @@ const ReservationTable = () => {
 
     return (
         <div className='reservation-container'>
-            <div className="pagination-container">
+            <div className='pagination-container'>
+                <form onSubmit={searchReservationById}>
+                    <input type='search' placeholder='Search by UUID' />
+                    <button type='submit'>Search</button>
+                </form>
                 <button onClick={() => loadReservations(currentPage - 1)} disabled={currentPage === 1}>Last</button>
                 <button onClick={() => loadReservations(currentPage + 1)}>Next</button>
             </div>

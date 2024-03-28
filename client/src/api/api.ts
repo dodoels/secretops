@@ -17,3 +17,12 @@ export const fetchReservation = async (page: number = 1, per_page: number = 10) 
     }
 };
 
+export const fetchReservationById = async (uuid: string) => {
+    try {
+        const response = await api.get(`/api/v1/reservations/${uuid}`);
+        return response.data.responseObject;
+    } catch (error) {
+        throw new Error('Error fetching data');
+    }
+};
+
