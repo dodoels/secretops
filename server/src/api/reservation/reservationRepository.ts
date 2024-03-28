@@ -21,7 +21,7 @@ const preprocess = (
     });
 
     // create reservation map that stores all transactions that link to the same reservation
-    // if the transaction does not exist, meaning it is "unpaid" (none as strinng)
+    // if the transaction does not exist, meaning it is 'unpaid' (none as strinng)
     const reservations = new Map<string, ProductDetail[]>();
     productAssignment.forEach((record: ProductAssignment) => {
         const transaction = chargesMap.get(record.id);
@@ -30,7 +30,7 @@ const preprocess = (
         }
         reservations.get(record.reservation_uuid)!.push({
             name: record.name,
-            status: transaction? transaction.active.toString() : "none",
+            status: transaction? transaction.active.toString() : 'none',
             charge: transaction ? transaction.amount : 0
         });
     });
@@ -50,8 +50,8 @@ export const reservationRepository = {
             const products = reservations.get(uuid) || [];
             return {
                 uuid,
-                sum: products.reduce((acc, product) => acc += product.status === "true" ? product.charge : 0, 0),
-                active: products.reduce((acc, product) => acc += product.status === "true" ? 1 : 0, 0),
+                sum: products.reduce((acc, product) => acc += product.status === 'true' ? product.charge : 0, 0),
+                active: products.reduce((acc, product) => acc += product.status === 'true' ? 1 : 0, 0),
                 products
             }
         });
@@ -65,8 +65,8 @@ export const reservationRepository = {
             const products = reservations.get(uuid) || [];
             return {
                 uuid,
-                sum: products.reduce((acc, product) => acc += product.status === "true" ? product.charge : 0, 0),
-                active: products.reduce((acc, product) => acc += product.status === "true" ? 1 : 0, 0),
+                sum: products.reduce((acc, product) => acc += product.status === 'true' ? product.charge : 0, 0),
+                active: products.reduce((acc, product) => acc += product.status === 'true' ? 1 : 0, 0),
                 products
             }
         });

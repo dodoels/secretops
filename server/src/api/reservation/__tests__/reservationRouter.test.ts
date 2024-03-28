@@ -46,7 +46,7 @@ describe('Reservation API Endpoints', () => {
         });
 
         it('should return an empty list for a invalid uuid', async () => {
-            const testUuid = '123';
+            const testUuid = 'brucecaiftw';
             const response = await request(app).get(`/api/v1/reservations/${testUuid}`);
             const responseBody: ServiceResponse<Reservation[]> = response.body;
             expect(response.statusCode).toEqual(StatusCodes.OK);
