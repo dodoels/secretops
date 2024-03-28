@@ -3,6 +3,7 @@ import { fetchReservation, fetchReservationById } from '../../../api/api';
 import './index.scss';
 import { Reservation } from '../../models/Reservation';
 import { RxTriangleDown, RxTriangleRight } from 'react-icons/rx';
+import React from 'react';
 
 
 const ReservationTable = () => {
@@ -81,15 +82,17 @@ const ReservationTable = () => {
                 <button onClick={() => loadReservations(currentPage + 1)}>Next</button>
             </div>
             <table className='reservation-table'>
-                <tr>
-                    <th>Reservation UUID</th>
-                    <th>Number of Active Purchases</th>
-                    <th>Sum of Active Charges</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Reservation UUID</th>
+                        <th>Number of Active Purchases</th>
+                        <th>Sum of Active Charges</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {reservations.map((reservation: Reservation) => (
-                        <>
-                            <tr onClick={() => toggleRow(reservation.uuid)} className='clickable-cell'>
+                        <React.Fragment key={reservation.uuid}>
+                            <tr onClick={() => toggleRow(reservation.uuid)} className='clickable-cell' key={reservation.uuid} >
                                 <td>
                                     {!expandedRows.has(reservation.uuid) ? <RxTriangleRight /> : <RxTriangleDown />}
                                     <span>{reservation.uuid}</span>
@@ -98,22 +101,22 @@ const ReservationTable = () => {
                                 <td>{reservation.sum.toFixed(2)}</td>
                             </tr>
                             {expandedRows.has(reservation.uuid) && (
-                                <>
+                                <React.Fragment>
                                     <tr>
                                         <th>Product Name</th>
                                         <th>Status</th>
                                         <th>Charge</th>
                                     </tr>
                                     {reservation.products.map((product, index) => (
-                                        <tr key={index} style={{ background: getColor(product.status)}} >
+                                        <tr key={`${reservation.uuid}-${index}`} style={{ background: getColor(product.status)}} >
                                             <td>{product.name}</td>
                                             <td>{getStatus(product.status)}</td>
                                             <td>{product.charge.toFixed(2)}</td>
                                         </tr>
                                     ))}
-                                </>
+                                </React.Fragment>
                             )}
-                        </>
+                        </React.Fragment>
                     ))}
                 </tbody>
             </table>
