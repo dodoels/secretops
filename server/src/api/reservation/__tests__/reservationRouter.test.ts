@@ -69,8 +69,10 @@ const compareReservation = (mockProduct: ProductDetail[], responseReservation: R
         expect(responseReservation[0].products[i].name).toEqual(mockProduct[i].name);
         expect(responseReservation[0].products[i].charge).toEqual(mockProduct[i].charge);
         expect(responseReservation[0].products[i].status).toEqual(mockProduct[i].status);
-        sum += mockProduct[i].charge;
-        if (mockProduct[i].status === 'true') active++;
+        if (mockProduct[i].status === 'true') {
+            active++;
+            sum += mockProduct[i].charge;
+        }
     }
     expect(sum).toEqual(responseReservation[0].sum);
     expect(active).toEqual(responseReservation[0].active);

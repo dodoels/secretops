@@ -7,5 +7,6 @@ export interface ProductDetail {
 export interface Reservation {
     uuid: string;
     sum: number;
+    active: number;
     products: ProductDetail[]
 }

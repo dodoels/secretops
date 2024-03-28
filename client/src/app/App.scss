@@ -16,31 +16,10 @@ body {
 }
 
 .App-container {
-    display: grid;
+    display: block;
     grid-template-rows: 100px calc(100vh - 150px) 50px;
     color: var(--dark);
+    height: auto;
+    width: 100%;
 }
 
-.App-header {
-    background-color: var(--grey);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.App-title {
-    margin: 2rem;
-    padding-left: 3.5rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left;
-    background-image: url('../assets/logo.png');
-}
-
-.App-footer {
-    color: var(--grey);
-    background-color: var(--dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}

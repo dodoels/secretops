@@ -44,11 +44,11 @@ export const reservations = preprocess(MockProductAssignments, MockProductCharge
 export const reservationRepository = {
     
     findAllAsync: async (limit: number, offset: number): Promise<Reservation[]> => {
-        const result: Reservation[] = Array.from(reservations.keys()).slice(offset, limit).map((uuid: string) => {
+        const result: Reservation[] = Array.from(reservations.keys()).slice(offset, offset + limit).map((uuid: string) => {
             const products = reservations.get(uuid) || [];
             return {
                 uuid,
-                sum: products.reduce((acc, product) => acc + product.charge, 0),
+                sum: products.reduce((acc, product) => acc += product.status === "true" ? product.charge : 0, 0),
                 active: products.reduce((acc, product) => acc += product.status === "true" ? 1 : 0, 0),
                 products
             }
