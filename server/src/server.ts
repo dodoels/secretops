@@ -3,7 +3,7 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import { pino } from 'pino';
 
-import { userRouter } from '@/api/user/userRouter';
+import { reservationRouter } from '@/api/reservation/reservationtRouter';
 import { openAPIRouter } from '@/api-docs/openAPIRouter';
 import errorHandler from '@/common/middleware/errorHandler';
 import rateLimiter from '@/common/middleware/rateLimiter';
@@ -25,7 +25,7 @@ app.use(rateLimiter);
 app.use(requestLogger());
 
 // Routes
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reservations', reservationRouter);
 
 // Swagger UI
 app.use(openAPIRouter);
