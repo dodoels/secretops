@@ -97,7 +97,7 @@ const ReservationTable = () => {
                                     {!expandedRows.has(reservation.uuid) ? <RxTriangleRight /> : <RxTriangleDown />}
                                     <span>{reservation.uuid}</span>
                                 </td>
-                                <td>{reservation.products.length}</td>
+                                <td>{reservation.active}</td>
                                 <td>{reservation.sum.toFixed(2)}</td>
                             </tr>
                             {expandedRows.has(reservation.uuid) && (
