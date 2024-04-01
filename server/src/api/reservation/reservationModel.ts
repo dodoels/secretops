@@ -19,6 +19,7 @@ export const ProductDetailSchema = z.object({
 export const ReservationSchema = z.object({
     uuid: z.string(),
     sum: z.number(),
+    active: z.number(),
     products: z.array(ProductDetailSchema)
 });
 
@@ -29,7 +30,13 @@ export const GetReservationSchema = z.object({
     }),
 });
 
-// database scheme
+export const GetReservationByIdSchema = z.object({
+    params: z.object({ 
+        uuid: commonValidations.uuid,
+    }),
+});
+
+// database schemas
 
 export interface ProductAssignment {
     id: number,
